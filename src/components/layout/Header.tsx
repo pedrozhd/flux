@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import logo from '../../assets/logo.png';
 
 interface HeaderProps {
   currentPage: string;
@@ -45,12 +46,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
           onClick={() => handleNavClick('home')}
           className="flex items-center gap-2 cursor-pointer group"
         >
-          <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-accent-600 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-lg">F</span>
-          </div>
-          <span className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
-            FLUX
-          </span>
+          <img
+            src={logo}
+            alt="FLUX Logo"
+            className="h-10 w-auto"
+          />
         </div>
 
         {/* Desktop Navigation */}

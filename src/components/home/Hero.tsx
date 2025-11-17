@@ -67,13 +67,11 @@ export const Hero: React.FC<HeroProps> = ({ onScrollToPredictor }) => {
 
           {/* Illustration */}
           <div className="hidden lg:flex items-center justify-center animate-slideInRight">
-            <div className="relative w-full h-96 rounded-3xl overflow-hidden shadow-2xl">
-              <img
-                src={careerPredictorVisual}
-                alt="Career Predictor Visual"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <img
+              src={careerPredictorVisual}
+              alt="Career Predictor Visual"
+              className="w-full max-h-80 rounded-3xl shadow-2xl object-contain"
+            />
           </div>
         </div>
       </div>

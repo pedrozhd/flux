@@ -38,7 +38,7 @@ const Counter: React.FC<CounterProps> = ({ target, suffix, label }) => {
 
 export const Statistics: React.FC = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary-600 to-accent-600 border-0">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary-600 to-accent-600 border-0 m-0">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12 animate-fadeIn">
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">

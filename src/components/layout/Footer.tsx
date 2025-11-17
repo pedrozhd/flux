@@ -1,5 +1,6 @@
 import React from 'react';
 import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import logo from '../../assets/logo.png';
 
 interface FooterProps {
   onNavigate: (page: string) => void;
@@ -23,17 +24,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   ];
 
   return (
-    <footer className="bg-gray-900 text-white mt-20">
+    <footer className="bg-gray-900 text-white mt-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-accent-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">F</span>
-              </div>
-              <span className="text-2xl font-bold">FLUX</span>
-            </div>
+            <img
+              src={logo}
+              alt="FLUX Logo"
+              className="h-12 w-auto mb-4"
+            />
             <p className="text-gray-400">
               Revolucionando transições de carreira com IA preditiva.
             </p>
