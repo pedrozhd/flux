@@ -1,35 +1,40 @@
 import React from 'react';
-import { Zap, BarChart3, Target, Rocket, Globe, Lightbulb } from 'lucide-react';
 import { Card } from '../shared/Card';
+import featurePrediction from '../../assets/feature-prediction.png';
+import featureSkills from '../../assets/feature-skills.png';
+import featureMatch from '../../assets/feature-match.png';
+import featureLearning from '../../assets/feature-learning.png';
+import featureGlobal from '../../assets/feature-global.png';
+import featureInsights from '../../assets/eature-insights.png';
 
 const features = [
   {
-    icon: Zap,
+    image: featurePrediction,
     title: 'Previsão de Profissões',
     description: 'IA analisa tendências globais para prever quais profissões se tornarão mainstream'
   },
   {
-    icon: BarChart3,
+    image: featureSkills,
     title: 'Análise de Skills',
     description: 'Identifica seus gaps de competências e prioriza o que aprender'
   },
   {
-    icon: Target,
+    image: featureMatch,
     title: 'Match Personalizado',
     description: 'Compatibilidade em tempo real entre seu perfil e profissões emergentes'
   },
   {
-    icon: Rocket,
+    image: featureLearning,
     title: 'Trilhas de Aprendizado',
     description: 'Roadmaps personalizados com cursos, certificações e projetos práticos'
   },
   {
-    icon: Globe,
+    image: featureGlobal,
     title: 'Mercado Global',
     description: 'Oportunidades internacionais em 30+ países com análise local'
   },
   {
-    icon: Lightbulb,
+    image: featureInsights,
     title: 'Insights Contínuos',
     description: 'Atualizações semanais sobre novas profissões e tendências de mercado'
   }
@@ -49,29 +54,30 @@ export const Features: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => {
-            const Icon = feature.icon;
-            return (
-              <Card
-                key={index}
-                hover
-                className="animate-fadeIn"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="flex flex-col h-full">
-                  <div className="w-12 h-12 bg-gradient-to-br from-primary-600 to-accent-600 rounded-lg flex items-center justify-center mb-4">
-                    <Icon className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600 flex-1">
-                    {feature.description}
-                  </p>
+          {features.map((feature, index) => (
+            <Card
+              key={index}
+              hover
+              className="animate-fadeIn overflow-hidden"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <div className="flex flex-col h-full">
+                <div className="w-full h-48 mb-4 overflow-hidden rounded-lg">
+                  <img
+                    src={feature.image}
+                    alt={feature.title}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-              </Card>
-            );
-          })}
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600 flex-1">
+                  {feature.description}
+                </p>
+              </div>
+            </Card>
+          ))}
         </div>
       </div>
     </section>

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Zap, TrendingUp, Brain } from 'lucide-react';
+import { Zap, TrendingUp } from 'lucide-react';
 import { Button } from '../shared/Button';
+import careerPredictorVisual from '../../assets/career-predictor-visual.png';
 
 interface HeroProps {
   onScrollToPredictor: () => void;
@@ -66,17 +67,12 @@ export const Hero: React.FC<HeroProps> = ({ onScrollToPredictor }) => {
 
           {/* Illustration */}
           <div className="hidden lg:flex items-center justify-center animate-slideInRight">
-            <div className="relative w-full h-96">
-              {/* Gradient circles */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-accent-400 rounded-3xl opacity-10 blur-2xl" />
-              
-              {/* Main card */}
-              <div className="absolute inset-0 bg-white rounded-3xl shadow-2xl p-8 flex flex-col justify-center items-center">
-                <Brain className="w-24 h-24 text-primary-600 mb-4" />
-                <p className="text-center text-gray-700 font-semibold">
-                  Análise Inteligente de Carreiras
-                </p>
-              </div>
+            <div className="relative w-full h-96 rounded-3xl overflow-hidden shadow-2xl">
+              <img
+                src={careerPredictorVisual}
+                alt="Career Predictor Visual"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
