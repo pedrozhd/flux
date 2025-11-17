@@ -4,7 +4,11 @@ import { Card } from '../components/shared/Card';
 import { AccordionItem } from '../components/faq/AccordionItem';
 import { faqs } from '../data/faqs';
 
-export const FAQ: React.FC = () => {
+interface FAQProps {
+  onNavigate?: (page: string) => void;
+}
+
+export const FAQ: React.FC<FAQProps> = ({ onNavigate }) => {
   const [openId, setOpenId] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -72,7 +76,10 @@ export const FAQ: React.FC = () => {
             <p className="text-gray-600 mb-4">
               Não encontrou sua pergunta?
             </p>
-            <button className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors">
+            <button
+              onClick={() => onNavigate?.('contact')}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors"
+            >
               Entre em Contato
             </button>
           </div>

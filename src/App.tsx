@@ -23,7 +23,7 @@ function App() {
       case 'about':
         return <About />;
       case 'faq':
-        return <FAQ />;
+        return <FAQ onNavigate={handleNavigate} />;
       case 'contact':
         return <Contact />;
       case 'login':
