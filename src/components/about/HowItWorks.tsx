@@ -1,24 +1,27 @@
 import React from 'react';
-import { User, Brain, Map, TrendingUp } from 'lucide-react';
+import timelineProfile from '../../assets/timeline-profile.png';
+import timelineMatching from '../../assets/timeline-matching.png';
+import timelineRoadmap from '../../assets/timeline-roadmap.png';
+import pillarPrediction from '../../assets/pillar-prediction.png';
 
 const steps = [
   {
-    icon: User,
+    image: timelineProfile,
     title: 'Análise de Perfil',
     description: 'Você insere suas skills atuais e informações profissionais'
   },
   {
-    icon: Brain,
+    image: timelineMatching,
     title: 'Matching Inteligente',
     description: 'Nossa IA analisa seus dados contra milhões de vagas e tendências'
   },
   {
-    icon: Map,
+    image: timelineRoadmap,
     title: 'Roadmap Personalizado',
     description: 'Receba um plano de ação customizado para sua transição de carreira'
   },
   {
-    icon: TrendingUp,
+    image: pillarPrediction,
     title: 'Acompanhamento Contínuo',
     description: 'Atualizações semanais sobre novas oportunidades e tendências'
   }
@@ -43,7 +46,6 @@ export const HowItWorks: React.FC = () => {
 
           <div className="space-y-12">
             {steps.map((step, index) => {
-              const Icon = step.icon;
               const isEven = index % 2 === 0;
 
               return (
@@ -61,17 +63,21 @@ export const HowItWorks: React.FC = () => {
                           </p>
                         </div>
                         <div className="flex justify-center">
-                          <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-accent-600 rounded-full flex items-center justify-center z-10 relative">
-                            <Icon className="w-8 h-8 text-white" />
-                          </div>
+                          <img
+                            src={step.image}
+                            alt={step.title}
+                            className="w-full max-h-48 object-contain rounded-lg"
+                          />
                         </div>
                       </>
                     ) : (
                       <>
                         <div className="flex justify-center">
-                          <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-accent-600 rounded-full flex items-center justify-center z-10 relative">
-                            <Icon className="w-8 h-8 text-white" />
-                          </div>
+                          <img
+                            src={step.image}
+                            alt={step.title}
+                            className="w-full max-h-48 object-contain rounded-lg"
+                          />
                         </div>
                         <div className="pl-12">
                           <h3 className="text-2xl font-bold text-gray-900 mb-2">
@@ -86,14 +92,13 @@ export const HowItWorks: React.FC = () => {
                   </div>
 
                   {/* Mobile layout */}
-                  <div className="md:hidden flex gap-6">
-                    <div className="flex flex-col items-center">
-                      <div className="w-12 h-12 bg-gradient-to-br from-primary-600 to-accent-600 rounded-full flex items-center justify-center z-10 relative">
-                        <Icon className="w-6 h-6 text-white" />
-                      </div>
-                      {index < steps.length - 1 && (
-                        <div className="w-1 h-12 bg-gradient-to-b from-primary-600 to-accent-600 mt-2" />
-                      )}
+                  <div className="md:hidden flex flex-col gap-6">
+                    <div className="w-full">
+                      <img
+                        src={step.image}
+                        alt={step.title}
+                        className="w-full max-h-40 object-contain rounded-lg mb-4"
+                      />
                     </div>
                     <div className="pb-8">
                       <h3 className="text-xl font-bold text-gray-900 mb-2">

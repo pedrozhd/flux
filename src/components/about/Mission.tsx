@@ -1,5 +1,6 @@
 import React from 'react';
 import { Heart } from 'lucide-react';
+import missionIllustration from '../../assets/mission-illustration.png';
 
 export const Mission: React.FC = () => {
   return (
@@ -32,15 +33,11 @@ export const Mission: React.FC = () => {
 
           {/* Visual */}
           <div className="hidden lg:flex items-center justify-center animate-slideInRight">
-            <div className="relative w-full h-96">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-accent-400 rounded-3xl opacity-10 blur-2xl" />
-              <div className="absolute inset-0 bg-white rounded-3xl shadow-2xl p-8 flex flex-col justify-center items-center">
-                <div className="text-6xl mb-4">🚀</div>
-                <p className="text-center text-gray-700 font-semibold">
-                  Transformando Carreiras, Construindo Futuros
-                </p>
-              </div>
-            </div>
+            <img
+              src={missionIllustration}
+              alt="Mission Illustration"
+              className="w-full max-h-96 rounded-3xl shadow-2xl object-contain"
+            />
           </div>
         </div>
       </div>
