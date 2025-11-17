@@ -26,13 +26,16 @@ export const CareerPredictor: React.FC<CareerPredictorProps> = ({ onNavigate }) 
   const [isLoading, setIsLoading] = useState(false);
   const [selectedCareer, setSelectedCareer] = useState<CareerMatch | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const { findMatches } = useCareerMatcher();
 
   const handleAddSkill = (skill: string) => {
     if (!skills.includes(skill) && skills.length < 15) {
       setSkills([...skills, skill]);
       setInputValue('');
+      setIsFocused(true);
     }
   };
 
@@ -61,11 +64,13 @@ export const CareerPredictor: React.FC<CareerPredictorProps> = ({ onNavigate }) 
     setIsLoading(false);
   };
 
-  const filteredSuggestions = SUGGESTED_SKILLS.filter(
-    skill =>
-      !skills.includes(skill) &&
-      skill.toLowerCase().includes(inputValue.toLowerCase())
-  ).slice(0, 5);
+  const filteredSuggestions = inputValue
+    ? SUGGESTED_SKILLS.filter(
+        skill =>
+          !skills.includes(skill) &&
+          skill.toLowerCase().includes(inputValue.toLowerCase())
+      ).slice(0, 5)
+    : SUGGESTED_SKILLS.filter(skill => !skills.includes(skill)).slice(0, 8);
 
   const handleViewDetails = (career: CareerMatch) => {
     setSelectedCareer(career);
@@ -110,7 +115,7 @@ export const CareerPredictor: React.FC<CareerPredictorProps> = ({ onNavigate }) 
             </div>
 
             {/* Input with suggestions */}
-            <div className="relative">
+            <div className="relative" ref={containerRef}>
               <div className="flex items-center gap-2 border-2 border-gray-300 rounded-lg px-4 py-2 focus-within:border-primary-600 transition-colors">
                 <Plus className="w-5 h-5 text-gray-400" />
                 <input
@@ -119,18 +124,33 @@ export const CareerPredictor: React.FC<CareerPredictorProps> = ({ onNavigate }) 
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="Digite uma skill e pressione Enter..."
+                  onFocus={() => setIsFocused(true)}
+                  onBlur={() => {
+                    // Apenas fecha se não estiver clicando em um botão de skill
+                    setTimeout(() => {
+                      if (document.activeElement !== containerRef.current) {
+                        setIsFocused(false);
+                      }
+                    }, 100);
+                  }}
+                  placeholder="Clique aqui para ver skills disponíveis..."
                   className="flex-1 outline-none text-gray-700"
                 />
               </div>
 
               {/* Suggestions dropdown */}
-              {inputValue && filteredSuggestions.length > 0 && (
-                <div className="absolute top-full left-0 right-0 mt-2 bg-white border-2 border-gray-300 rounded-lg shadow-lg z-10 animate-slideIn">
+              {isFocused && filteredSuggestions.length > 0 && (
+                <div className="absolute top-full left-0 right-0 mt-2 bg-white border-2 border-gray-300 rounded-lg shadow-lg z-10 animate-slideIn max-h-64 overflow-y-auto">
+                  <div className="p-2 text-xs text-gray-500 border-b border-gray-200">
+                    {inputValue ? 'Resultados da busca' : 'Skills disponíveis'}
+                  </div>
                   {filteredSuggestions.map(skill => (
                     <button
                       key={skill}
-                      onClick={() => handleAddSkill(skill)}
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                        handleAddSkill(skill);
+                      }}
                       className="w-full text-left px-4 py-2 hover:bg-primary-50 transition-colors first:rounded-t-lg last:rounded-b-lg"
                     >
                       {skill}
