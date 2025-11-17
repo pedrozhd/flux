@@ -28,17 +28,17 @@ const Counter: React.FC<CounterProps> = ({ target, suffix, label }) => {
 
   return (
     <div className="text-center">
-      <p className="text-4xl sm:text-5xl font-bold text-primary-600 mb-2">
+      <p className="text-4xl sm:text-5xl font-bold text-white mb-2">
         {count.toLocaleString()}{suffix}
       </p>
-      <p className="text-gray-600 font-semibold">{label}</p>
+      <p className="text-white/80 font-semibold">{label}</p>
     </div>
   );
 };
 
 export const Statistics: React.FC = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary-600 to-accent-600">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary-600 to-accent-600 border-0">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12 animate-fadeIn">
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
