@@ -17,7 +17,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
 
   return (
     <main>
-      <Hero onScrollToPredictor={handleScrollToPredictor} />
+      <Hero onScrollToPredictor={handleScrollToPredictor} onNavigate={onNavigate} />
       <div ref={predictorRef}>
         <CareerPredictor onNavigate={onNavigate} />
       </div>

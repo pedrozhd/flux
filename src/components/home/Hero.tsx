@@ -5,9 +5,10 @@ import careerPredictorVisual from '../../assets/career-predictor-visual.png';
 
 interface HeroProps {
   onScrollToPredictor: () => void;
+  onNavigate?: (page: string) => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onScrollToPredictor }) => {
+export const Hero: React.FC<HeroProps> = ({ onScrollToPredictor, onNavigate }) => {
   return (
     <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary-50 via-white to-accent-50 relative overflow-hidden">
       {/* Decorative elements */}
@@ -43,6 +44,7 @@ export const Hero: React.FC<HeroProps> = ({ onScrollToPredictor }) => {
               <Button
                 variant="outline"
                 size="lg"
+                onClick={() => onNavigate?.('about')}
               >
                 Saiba Mais
               </Button>
