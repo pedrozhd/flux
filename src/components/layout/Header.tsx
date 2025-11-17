@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, LogOut } from 'lucide-react';
 import logo from '../../assets/logo.png';
+import { useAuth } from '../../hooks/useAuth';
 
 interface HeaderProps {
   currentPage: string;
@@ -8,6 +9,7 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
+  const { user, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -68,6 +70,38 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
               {item.label}
             </button>
           ))}
+
+          {/* Auth Buttons */}
+          <div className="flex items-center gap-4 pl-4 border-l border-gray-200">
+            {user ? (
+              <>
+                <span className="text-sm font-semibold text-gray-700">
+                  {user.name}
+                </span>
+                <button
+                  onClick={() => {
+                    logout();
+                    handleNavClick('home');
+                  }}
+                  className="flex items-center gap-2 px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg font-semibold transition-colors"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Sair
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={() => handleNavClick('login')}
+                className={`font-semibold transition-colors ${
+                  currentPage === 'login'
+                    ? 'text-primary-600'
+                    : 'text-gray-700 hover:text-primary-600'
+                }`}
+              >
+                Login
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Mobile Menu Button */}
@@ -101,6 +135,38 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
                 {item.label}
               </button>
             ))}
+
+            {/* Mobile Auth Buttons */}
+            <div className="pt-4 border-t border-gray-200 space-y-2">
+              {user ? (
+                <>
+                  <div className="px-4 py-2 text-sm font-semibold text-gray-700">
+                    {user.name}
+                  </div>
+                  <button
+                    onClick={() => {
+                      logout();
+                      handleNavClick('home');
+                      setIsMenuOpen(false);
+                    }}
+                    className="block w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg font-semibold transition-colors"
+                  >
+                    Sair
+                  </button>
+                </>
+              ) : (
+                <button
+                  onClick={() => handleNavClick('login')}
+                  className={`block w-full text-left px-4 py-2 rounded-lg font-semibold transition-colors ${
+                    currentPage === 'login'
+                      ? 'bg-primary-100 text-primary-600'
+                      : 'text-gray-700 hover:bg-gray-100'
+                  }`}
+                >
+                  Login
+                </button>
+              )}
+            </div>
           </div>
         </div>
       )}

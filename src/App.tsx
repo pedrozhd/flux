@@ -5,9 +5,10 @@ import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { FAQ } from './pages/FAQ';
 import { Contact } from './pages/Contact';
+import { Login } from './pages/Login';
 import './index.css';
 
-type Page = 'home' | 'about' | 'faq' | 'contact';
+type Page = 'home' | 'about' | 'faq' | 'contact' | 'login';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -25,6 +26,8 @@ function App() {
         return <FAQ />;
       case 'contact':
         return <Contact />;
+      case 'login':
+        return <Login onLoginSuccess={() => handleNavigate('home')} />;
       default:
         return <Home />;
     }
