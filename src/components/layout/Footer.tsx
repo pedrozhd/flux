@@ -79,6 +79,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
         {/* Divider */}
         <div className="border-t border-gray-800 pt-8">
+          <div className="mb-6 text-center">
+            <p className="text-gray-300 font-semibold mb-3">Desenvolvedores</p>
+            <div className="space-y-1 text-gray-400 text-sm">
+              <p>Pedro Henrique Dias França - RM561940</p>
+              <p>Olavo Porto Neves - RM563558</p>
+              <p>Luiz Gustavo Gonçalves - RM564495</p>
+              <p className="text-gray-500 mt-2">Turma: 1TDSR</p>
+            </div>
+          </div>
           <p className="text-center text-gray-400">
             © {currentYear} FLUX - Living Curriculum System. Todos os direitos reservados.
           </p>

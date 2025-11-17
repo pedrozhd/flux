@@ -3,24 +3,22 @@ import { Card } from '../shared/Card';
 
 const teamMembers = [
   {
-    name: 'Dr. Carlos Silva',
-    role: 'Fundador & CEO',
-    bio: 'PhD em Machine Learning com 15 anos de experiência em IA'
+    name: 'Pedro Henrique Dias França',
+    rm: 'RM561940',
+    role: 'Desenvolvedor Full Stack',
+    bio: 'Especialista em React e TypeScript, responsável pela arquitetura frontend'
   },
   {
-    name: 'Ana Costa',
-    role: 'CTO',
-    bio: 'Engenheira de software sênior com expertise em sistemas distribuídos'
+    name: 'Olavo Porto Neves',
+    rm: 'RM563558',
+    role: 'Desenvolvedor Frontend',
+    bio: 'Focado em UI/UX e componentes interativos, garantindo melhor experiência do usuário'
   },
   {
-    name: 'João Santos',
-    role: 'Head of Data',
-    bio: 'Cientista de dados com background em economia e mercado de trabalho'
-  },
-  {
-    name: 'Maria Oliveira',
-    role: 'Head of Product',
-    bio: 'Product manager com experiência em startups de impacto social'
+    name: 'Luiz Gustavo Gonçalves',
+    rm: 'RM564495',
+    role: 'Desenvolvedor Backend',
+    bio: 'Especialista em arquitetura de sistemas e integração de APIs'
   }
 ];
 
@@ -37,7 +35,7 @@ export const Team: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {teamMembers.map((member, index) => (
             <Card
               key={index}
@@ -53,6 +51,9 @@ export const Team: React.FC = () => {
               <h3 className="text-lg font-bold text-gray-900 mb-1">
                 {member.name}
               </h3>
+              <p className="text-xs font-semibold text-accent-600 mb-2">
+                {member.rm}
+              </p>
               <p className="text-sm font-semibold text-primary-600 mb-3">
                 {member.role}
               </p>
