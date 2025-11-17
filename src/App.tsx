@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { Home } from './pages/Home';
@@ -9,41 +9,59 @@ import { Login } from './pages/Login';
 import { Roadmap } from './pages/Roadmap';
 import './index.css';
 
-type Page = 'home' | 'about' | 'faq' | 'contact' | 'login' | 'roadmap';
+function AppContent() {
+  const location = useLocation();
+  const navigate = useNavigate();
 
-function App() {
-  const [currentPage, setCurrentPage] = useState<Page>('home');
+  const getPageFromPath = () => {
+    const path = location.pathname;
+    if (path === '/') return 'home';
+    if (path === '/about') return 'about';
+    if (path === '/faq') return 'faq';
+    if (path === '/contact') return 'contact';
+    if (path === '/login') return 'login';
+    if (path === '/roadmap') return 'roadmap';
+    return 'home';
+  };
 
   const handleNavigate = (page: string) => {
-    setCurrentPage(page as Page);
+    const pathMap: { [key: string]: string } = {
+      home: '/',
+      about: '/about',
+      faq: '/faq',
+      contact: '/contact',
+      login: '/login',
+      roadmap: '/roadmap'
+    };
+    navigate(pathMap[page] || '/');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'about':
-        return <About />;
-      case 'faq':
-        return <FAQ onNavigate={handleNavigate} />;
-      case 'contact':
-        return <Contact />;
-      case 'login':
-        return <Login onLoginSuccess={() => handleNavigate('home')} />;
-      case 'roadmap':
-        return <Roadmap />;
-      default:
-        return <Home onNavigate={handleNavigate} />;
-    }
-  };
+  const currentPage = getPageFromPath();
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <Header currentPage={currentPage} onNavigate={handleNavigate} />
       <div className="flex-1">
-        {renderPage()}
+        <Routes>
+          <Route path="/" element={<Home onNavigate={handleNavigate} />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/faq" element={<FAQ onNavigate={handleNavigate} />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login onLoginSuccess={() => handleNavigate('home')} />} />
+          <Route path="/roadmap" element={<Roadmap />} />
+        </Routes>
       </div>
       <Footer onNavigate={handleNavigate} />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
   );
 }
 
