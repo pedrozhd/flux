@@ -62,11 +62,11 @@ export const Features: React.FC = () => {
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="flex flex-col h-full">
-                <div className="w-full h-48 mb-4 overflow-hidden rounded-lg">
+                <div className="w-full h-32 mb-4 overflow-hidden rounded-lg">
                   <img
                     src={feature.image}
                     alt={feature.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
