@@ -4,7 +4,11 @@ import { CareerPredictor } from '../components/home/CareerPredictor';
 import { Features } from '../components/home/Features';
 import { Statistics } from '../components/home/Statistics';
 
-export const Home: React.FC = () => {
+interface HomeProps {
+  onNavigate?: (page: string) => void;
+}
+
+export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   const predictorRef = useRef<HTMLDivElement>(null);
 
   const handleScrollToPredictor = () => {
@@ -15,7 +19,7 @@ export const Home: React.FC = () => {
     <main>
       <Hero onScrollToPredictor={handleScrollToPredictor} />
       <div ref={predictorRef}>
-        <CareerPredictor />
+        <CareerPredictor onNavigate={onNavigate} />
       </div>
       <Features />
       <Statistics />

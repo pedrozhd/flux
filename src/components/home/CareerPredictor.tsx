@@ -15,7 +15,11 @@ const SUGGESTED_SKILLS = [
   'Cloud Computing', 'DevOps'
 ];
 
-export const CareerPredictor: React.FC = () => {
+interface CareerPredictorProps {
+  onNavigate?: (page: string) => void;
+}
+
+export const CareerPredictor: React.FC<CareerPredictorProps> = ({ onNavigate }) => {
   const [skills, setSkills] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [matches, setMatches] = useState<CareerMatch[]>([]);
@@ -335,7 +339,12 @@ export const CareerPredictor: React.FC = () => {
               </div>
             </div>
 
-            <Button variant="primary" size="lg" className="w-full">
+            <Button
+              variant="primary"
+              size="lg"
+              className="w-full"
+              onClick={() => onNavigate?.('roadmap')}
+            >
               Criar Roadmap de Aprendizado
             </Button>
           </div>

@@ -6,9 +6,10 @@ import { About } from './pages/About';
 import { FAQ } from './pages/FAQ';
 import { Contact } from './pages/Contact';
 import { Login } from './pages/Login';
+import { Roadmap } from './pages/Roadmap';
 import './index.css';
 
-type Page = 'home' | 'about' | 'faq' | 'contact' | 'login';
+type Page = 'home' | 'about' | 'faq' | 'contact' | 'login' | 'roadmap';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -28,8 +29,10 @@ function App() {
         return <Contact />;
       case 'login':
         return <Login onLoginSuccess={() => handleNavigate('home')} />;
+      case 'roadmap':
+        return <Roadmap />;
       default:
-        return <Home />;
+        return <Home onNavigate={handleNavigate} />;
     }
   };
 
