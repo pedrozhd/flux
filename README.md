@@ -1,73 +1,106 @@
-# React + TypeScript + Vite
+# 📊 FLUX - Living Curriculum System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Banner do Projeto](src/assets/career-predictor-visual.png)
 
-Currently, two official plugins are available:
+FLUX é uma plataforma inovadora que utiliza inteligência de dados para conectar as competências técnicas e comportamentais dos alunos às demandas do mercado de trabalho, criando um currículo dinâmico e personalizado.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tecnologias
 
-## React Compiler
+- **Frontend**: React 19 + TypeScript + Vite
+- **Estilização**: Tailwind CSS
+- **Roteamento**: React Router DOM
+- **Ícones**: Lucide React
+- **Build**: Vite
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+## ✨ Funcionalidades
 
-## Expanding the ESLint configuration
+- **Análise de Perfil Profissional**
+- **Matching de Competências**
+- **Roadmap de Aprendizado Personalizado**
+- **Dashboard de Desenvolvimento**
+- **Recomendações de Carreira**
+- **Sistema de Autenticação**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Instalação
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/pedrozhd/flux.git
+   cd flux
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+3. Inicie o servidor de desenvolvimento:
+   ```bash
+   npm run dev
+   ```
+
+4. Acesse no navegador:
+   ```
+   http://localhost:5173
+   ```
+
+## 🏗️ Estrutura do Projeto
+
+```
+src/
+├── assets/           # Imagens e recursos estáticos
+├── components/       # Componentes reutilizáveis
+│   ├── about/        # Componentes da página Sobre
+│   ├── home/         # Componentes da página inicial
+│   ├── layout/       # Componentes de layout (Header, Footer)
+│   └── shared/       # Componentes compartilhados
+├── hooks/            # Custom hooks
+├── pages/            # Páginas da aplicação
+├── types/            # Tipos TypeScript
+└── utils/            # Utilitários e helpers
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🌐 Rotas da Aplicação
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- `/` - Página inicial
+- `/about` - Sobre o projeto
+- `/faq` - Perguntas frequentes
+- `/contact` - Contato
+- `/login` - Autenticação
+- `/roadmap` - Roadmap de aprendizado
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🧪 Testes
+
+Para executar os testes:
+
+```bash
+npm test
 ```
+
+## 📦 Build para Produção
+
+```bash
+npm run build
+```
+
+## 🤝 Contribuição
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Faça o push da branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 👥 Equipe
+
+- **Pedro Henrique** - [GitHub](https://github.com/pedrozhd)
+- **Luiz Felipe** - [GitHub](https://github.com/seu-usuario)
+- **Olavo** - [GitHub](https://github.com/seu-usuario)
+
+---
+
+Desenvolvido com ❤️ para o desafio de desenvolvimento global 2
