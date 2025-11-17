@@ -19,7 +19,7 @@ const validateForm = (values: ContactFormData) => {
     errors.email = 'Email inválido';
   }
 
-  if (!values.subject.trim()) {
+  if (!values.subject || !values.subject.trim()) {
     errors.subject = 'Assunto é obrigatório';
   }
 
@@ -143,7 +143,7 @@ export const Contact: React.FC = () => {
                     label="Telefone (Opcional)"
                     type="tel"
                     name="phone"
-                    value={values.phone}
+                    value={values.phone || ''}
                     onChange={(value) => handleChange({ target: { name: 'phone', value } } as any)}
                     placeholder="(11) 9999-9999"
                   />
