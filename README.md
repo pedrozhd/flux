@@ -71,7 +71,7 @@ O FLUX é uma plataforma inovadora que utiliza inteligência de dados para conec
    http://localhost:5173
    ```
 
-## 7. � Como Usar
+## 7. Como Usar
 
 ### Autenticação
 ```
@@ -138,15 +138,14 @@ flux/
 - **Pedro Henrique**
   - Função: Desenvolvedor Full Stack
   - GitHub: [@pedrozhd](https://github.com/pedrozhd)
-  - LinkedIn: [pedrozhd](https://linkedin.com/in/pedrozhd)
 
-- **Luiz Felipe**
+- **Luiz Gustavo Gonçalves**
   - Função: Desenvolvedor Frontend
-  - GitHub: [@luizfelipe](https://github.com/luizfelipe)
+  - GitHub: [@luizzggoncalves](https://github.com/luizzggoncalves)
   
-- **Olavo**
+- **Olavo Porto Neves**
   - Função: Designer UX/UI
-  - GitHub: [@olavodesigner](https://github.com/olavodesigner)
+  - GitHub: [@olavoneves](https://github.com/olavoneves)
 
 ## 11. 📸 Screenshots
 
@@ -159,17 +158,17 @@ flux/
 ### Roadmap
 ![Roadmap](/screenshots/roadmap.png)
 
-## 12. � Contato
+## 12. Contato
 
 ### Suporte Técnico
 - **Email**: suporte@flux.com.br
 - **Telefone**: (11) 99999-9999
 - **Horário de Atendimento**: Seg-Sex, 9h-18h
 
-### Redes Sociais
-- [Twitter](https://twitter.com/flux)
-- [LinkedIn](https://linkedin.com/company/flux)
-- [Instagram](https://instagram.com/flux)
+### Links Úteis
+- [Vercel](https://flux-rouge.vercel.app/)
+- [GitHub](https://github.com/pedrozhd/flux)
+- [Youtube](https://youtube.com/flux)
 
 ### Endereço
 Rua das Inovações, 123 - São Paulo/SP
