@@ -64,15 +64,15 @@ export const Contact: React.FC = () => {
 
   return (
     <main className="pt-20">
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Contact Info */}
             <div className="animate-fadeIn">
-              <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+              <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6">
                 Entre em Contato
               </h1>
-              <p className="text-lg text-gray-600 mb-8">
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
                 Tem dúvidas? Estamos aqui para ajudar. Entre em contato conosco e responderemos o mais rápido possível.
               </p>
 

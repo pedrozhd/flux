@@ -62,30 +62,30 @@ export const Roadmap: React.FC<RoadmapProps> = ({ careerName = 'Profissão Emerg
 
   return (
     <main className="pt-20 pb-20">
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary-50 to-accent-50">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary-50 to-accent-50 dark:from-gray-900 dark:to-gray-800">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12 animate-fadeIn">
-            <h1 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-4">
+            <h1 className="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-4">
               Roadmap de Aprendizado
             </h1>
-            <p className="text-xl text-gray-600 mb-6">
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-6">
               Seu caminho personalizado para {careerName}
             </p>
 
             {/* Progress Bar */}
             <div className="max-w-2xl mx-auto">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-semibold text-gray-700">Progresso</span>
+                <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Progresso</span>
                 <span className="text-sm font-bold text-primary-600">{Math.round(progress)}%</span>
               </div>
-              <div className="w-full bg-gray-200 rounded-full h-3">
+              <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
                 <div
                   className="bg-gradient-to-r from-primary-600 to-accent-600 h-3 rounded-full transition-all duration-500"
                   style={{ width: `${progress}%` }}
                 />
               </div>
-              <p className="text-sm text-gray-600 mt-2">
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
                 {completedPhases} de {phases.length} fases concluídas
               </p>
             </div>
@@ -108,7 +108,7 @@ export const Roadmap: React.FC<RoadmapProps> = ({ careerName = 'Profissão Emerg
                       <Circle className="w-8 h-8 text-gray-400 flex-shrink-0" />
                     )}
                     {index < phases.length - 1 && (
-                      <div className="w-1 h-16 bg-gray-200 my-2" />
+                      <div className="w-1 h-16 bg-gray-200 dark:bg-gray-700 my-2" />
                     )}
                   </div>
 
@@ -117,11 +117,11 @@ export const Roadmap: React.FC<RoadmapProps> = ({ careerName = 'Profissão Emerg
                     <div className="flex items-start justify-between mb-4">
                       <div>
                         <h3 className={`text-2xl font-bold mb-2 ${
-                          phase.completed ? 'text-gray-500 line-through' : 'text-gray-900'
+                          phase.completed ? 'text-gray-500 dark:text-gray-500 line-through' : 'text-gray-900 dark:text-white'
                         }`}>
                           {phase.title}
                         </h3>
-                        <div className="flex items-center gap-2 text-gray-600">
+                        <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
                           <Calendar className="w-4 h-4" />
                           <span className="text-sm font-semibold">{phase.duration}</span>
                         </div>
@@ -140,7 +140,7 @@ export const Roadmap: React.FC<RoadmapProps> = ({ careerName = 'Profissão Emerg
                       <div>
                         <div className="flex items-center gap-2 mb-3">
                           <Code className="w-5 h-5 text-primary-600" />
-                          <h4 className="font-bold text-gray-900">Skills a Desenvolver</h4>
+                          <h4 className="font-bold text-gray-900 dark:text-white">Skills a Desenvolver</h4>
                         </div>
                         <div className="flex flex-wrap gap-2">
                           {phase.skills.map(skill => (
@@ -161,7 +161,7 @@ export const Roadmap: React.FC<RoadmapProps> = ({ careerName = 'Profissão Emerg
                       <div>
                         <div className="flex items-center gap-2 mb-3">
                           <BookOpen className="w-5 h-5 text-accent-600" />
-                          <h4 className="font-bold text-gray-900">Recursos</h4>
+                          <h4 className="font-bold text-gray-900 dark:text-white">Recursos</h4>
                         </div>
                         <div className="flex flex-wrap gap-2">
                           {phase.resources.map(resource => (

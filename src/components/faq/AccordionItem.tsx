@@ -15,12 +15,12 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
   onToggle
 }) => {
   return (
-    <div className="border-b border-gray-200 last:border-b-0">
+    <div className="border-b border-gray-200 dark:border-gray-700 last:border-b-0">
       <button
         onClick={onToggle}
-        className="w-full py-6 px-6 flex items-center justify-between hover:bg-gray-50 transition-colors text-left"
+        className="w-full py-6 px-6 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-left"
       >
-        <span className="text-lg font-semibold text-gray-900">
+        <span className="text-lg font-semibold text-gray-900 dark:text-white">
           {question}
         </span>
         <ChevronDown
@@ -36,7 +36,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
           isOpen ? 'max-h-96' : 'max-h-0'
         }`}
       >
-        <div className="px-6 pb-6 text-gray-600 leading-relaxed">
+        <div className="px-6 pb-6 text-gray-600 dark:text-gray-300 leading-relaxed">
           {answer}
         </div>
       </div>

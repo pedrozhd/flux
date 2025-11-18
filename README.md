@@ -1,28 +1,55 @@
 # 📊 FLUX - Living Curriculum System
 
+## 1. 📌 Visão Geral
 ![Banner do Projeto](src/assets/career-predictor-visual.png)
 
-FLUX é uma plataforma inovadora que utiliza inteligência de dados para conectar as competências técnicas e comportamentais dos alunos às demandas do mercado de trabalho, criando um currículo dinâmico e personalizado.
+## 2. 📊 Status do Projeto
+✅ **Versão**: 1.0.0  
+🚀 **Status**: Em Desenvolvimento  
+📅 **Última Atualização**: Novembro 2025
 
-## 🚀 Tecnologias
+## 3. 📚 Sumário
+- [Sobre o Projeto](#4-💡-sobre-o-projeto)
+- [Tecnologias](#5-🚀-tecnologias-utilizadas)
+- [Instalação](#6-🛠️-instalação)
+- [Como Usar](#7-🎮-como-usar)
+- [Estrutura de Pastas](#8-📁-estrutura-de-pastas)
+- [Endpoints](#9-🌐-endpoints)
+- [Autores](#10-👥-autores-e-créditos)
+- [Screenshots](#11-📸-screenshots)
+- [Contato](#12-📧-contato)
 
-- **Frontend**: React 19 + TypeScript + Vite
-- **Estilização**: Tailwind CSS
-- **Roteamento**: React Router DOM
-- **Ícones**: Lucide React
-- **Build**: Vite
+## 4. 💡 Sobre o Projeto
+O FLUX é uma plataforma inovadora que utiliza inteligência de dados para conectar as competências técnicas e comportamentais dos alunos às demandas do mercado de trabalho, criando um currículo dinâmico e personalizado.
 
-## ✨ Funcionalidades
+**Objetivos Principais**:
+- Conectar habilidades dos alunos às necessidades do mercado
+- Criar roadmaps de aprendizado personalizados
+- Fornecer métricas de desenvolvimento profissional
+- Facilitar a descoberta de carreiras compatíveis
 
-- **Análise de Perfil Profissional**
-- **Matching de Competências**
-- **Roadmap de Aprendizado Personalizado**
-- **Dashboard de Desenvolvimento**
-- **Recomendações de Carreira**
-- **Sistema de Autenticação**
+## 5. 🚀 Tecnologias Utilizadas
 
-## 🛠️ Instalação
+### Frontend
+- **React 19** - Biblioteca JavaScript para interfaces
+- **TypeScript** - Adição de tipagem estática
+- **Vite** - Build tool e dev server
+- **Tailwind CSS** - Estilização
+- **React Router DOM** - Navegação
+- **Lucide React** - Ícones
 
+### Ferramentas
+- **ESLint** - Linter
+- **Prettier** - Formatação de código
+- **Git** - Controle de versão
+
+## 6. 🛠️ Instalação
+
+### Pré-requisitos
+- Node.js (versão 18+)
+- npm (versão 9+)
+
+### Passo a Passo
 1. Clone o repositório:
    ```bash
    git clone https://github.com/pedrozhd/flux.git
@@ -39,67 +66,113 @@ FLUX é uma plataforma inovadora que utiliza inteligência de dados para conecta
    npm run dev
    ```
 
-4. Acesse no navegador:
+4. Acesse:
    ```
    http://localhost:5173
    ```
 
-## 🏗️ Estrutura do Projeto
+## 7. � Como Usar
 
+### Autenticação
 ```
-src/
-├── assets/           # Imagens e recursos estáticos
-├── components/       # Componentes reutilizáveis
-│   ├── about/        # Componentes da página Sobre
-│   ├── home/         # Componentes da página inicial
-│   ├── layout/       # Componentes de layout (Header, Footer)
-│   └── shared/       # Componentes compartilhados
-├── hooks/            # Custom hooks
-├── pages/            # Páginas da aplicação
-├── types/            # Tipos TypeScript
-└── utils/            # Utilitários e helpers
+POST /api/auth/login
+{
+  "email": "usuario@exemplo.com",
+  "senha": "senha123"
+}
 ```
 
-## 🌐 Rotas da Aplicação
-
-- `/` - Página inicial
-- `/about` - Sobre o projeto
-- `/faq` - Perguntas frequentes
-- `/contact` - Contato
-- `/login` - Autenticação
-- `/roadmap` - Roadmap de aprendizado
-
-## 🧪 Testes
-
-Para executar os testes:
-
-```bash
-npm test
+### Buscar Carreiras Recomendadas
+```
+GET /api/carreiras/recomendadas?skills=react,typescript
 ```
 
-## 📦 Build para Produção
-
-```bash
-npm run build
+### Criar Roadmap
+```
+POST /api/roadmap
+{
+  "carreiraId": "dev-frontend",
+  "nivelAtual": "iniciante"
+}
 ```
 
-## 🤝 Contribuição
+## 8. 📁 Estrutura de Pastas
 
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Faça o push da branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
+```
+flux/
+├── public/            # Arquivos estáticos
+└── src/
+    ├── assets/        # Imagens, ícones, etc.
+    ├── components/    # Componentes reutilizáveis
+    │   ├── about/     # Componentes da página Sobre
+    │   ├── home/      # Componentes da página inicial
+    │   ├── layout/    # Layouts da aplicação
+    │   └── shared/    # Componentes compartilhados
+    ├── hooks/         # Custom Hooks
+    ├── pages/         # Páginas da aplicação
+    ├── services/      # Serviços de API
+    ├── types/         # Tipos TypeScript
+    └── utils/         # Utilitários
+```
 
-## 📄 Licença
+## 9. 🌐 Endpoints
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+### Autenticação
+- `POST /api/auth/register` - Registrar novo usuário
+- `POST /api/auth/login` - Fazer login
+- `GET /api/auth/me` - Obter dados do usuário logado
 
-## 👥 Equipe
+### Carreiras
+- `GET /api/carreiras` - Listar todas as carreiras
+- `GET /api/carreiras/:id` - Detalhes de uma carreira
+- `GET /api/carreiras/recomendadas` - Carreiras recomendadas
 
-- **Pedro Henrique** - [GitHub](https://github.com/pedrozhd)
-- **Luiz Felipe** - [GitHub](https://github.com/seu-usuario)
-- **Olavo** - [GitHub](https://github.com/seu-usuario)
+### Roadmaps
+- `POST /api/roadmaps` - Criar novo roadmap
+- `GET /api/roadmaps/:id` - Visualizar roadmap
+- `PUT /api/roadmaps/:id` - Atualizar progresso
+
+## 10. 👥 Autores e Créditos
+
+### Desenvolvedores
+- **Pedro Henrique**
+  - Função: Desenvolvedor Full Stack
+  - GitHub: [@pedrozhd](https://github.com/pedrozhd)
+  - LinkedIn: [pedrozhd](https://linkedin.com/in/pedrozhd)
+
+- **Luiz Felipe**
+  - Função: Desenvolvedor Frontend
+  - GitHub: [@luizfelipe](https://github.com/luizfelipe)
+  
+- **Olavo**
+  - Função: Designer UX/UI
+  - GitHub: [@olavodesigner](https://github.com/olavodesigner)
+
+## 11. 📸 Screenshots
+
+### Página Inicial
+![Página Inicial](/screenshots/principal.png)
+
+### Dashboard
+![Dashboard](/screenshots/dashboard.png)
+
+### Roadmap
+![Roadmap](/screenshots/roadmap.png)
+
+## 12. � Contato
+
+### Suporte Técnico
+- **Email**: suporte@flux.com.br
+- **Telefone**: (11) 99999-9999
+- **Horário de Atendimento**: Seg-Sex, 9h-18h
+
+### Redes Sociais
+- [Twitter](https://twitter.com/flux)
+- [LinkedIn](https://linkedin.com/company/flux)
+- [Instagram](https://instagram.com/flux)
+
+### Endereço
+Rua das Inovações, 123 - São Paulo/SP
 
 ---
 

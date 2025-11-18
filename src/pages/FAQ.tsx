@@ -23,33 +23,33 @@ export const FAQ: React.FC<FAQProps> = ({ onNavigate }) => {
 
   return (
     <main className="pt-20">
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary-50 to-accent-50">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary-50 to-accent-50 dark:from-gray-900 dark:to-gray-800">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12 animate-fadeIn">
-            <h1 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-4">
+            <h1 className="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-4">
               Perguntas Frequentes
             </h1>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-600 dark:text-gray-300">
               Encontre respostas para suas dúvidas sobre FLUX
             </p>
           </div>
 
           {/* Search Bar */}
           <div className="relative mb-8 animate-slideIn">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500" />
             <input
               type="text"
               placeholder="Buscar perguntas..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-primary-600 transition-colors"
+              className="w-full pl-12 pr-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-primary-600 dark:focus:border-primary-400 transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
             />
           </div>
 
           {/* Accordion */}
           <Card className="animate-fadeIn">
             {filteredFaqs.length > 0 ? (
-              <div className="divide-y divide-gray-200">
+              <div className="divide-y divide-gray-200 dark:divide-gray-700">
                 {filteredFaqs.map(faq => (
                   <AccordionItem
                     key={faq.id}

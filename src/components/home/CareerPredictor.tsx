@@ -78,13 +78,13 @@ export const CareerPredictor: React.FC<CareerPredictorProps> = ({ onNavigate }) 
   };
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white" id="career-predictor">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900" id="career-predictor">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12 animate-fadeIn">
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             Analisador de Carreiras
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-gray-600 dark:text-gray-300">
             Insira suas skills atuais e descubra as profissões emergentes mais compatíveis com seu perfil
           </p>
         </div>
@@ -92,7 +92,7 @@ export const CareerPredictor: React.FC<CareerPredictorProps> = ({ onNavigate }) 
         <Card className="max-w-2xl mx-auto">
           {/* Skills Input */}
           <div className="mb-6">
-            <label className="block text-sm font-semibold text-gray-700 mb-3">
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
               Suas Skills
             </label>
 
@@ -101,12 +101,12 @@ export const CareerPredictor: React.FC<CareerPredictorProps> = ({ onNavigate }) 
               {skills.map(skill => (
                 <div
                   key={skill}
-                  className="bg-primary-100 text-primary-700 px-3 py-1.5 rounded-full flex items-center gap-2 animate-scaleIn"
+                  className="bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 px-3 py-1.5 rounded-full flex items-center gap-2 animate-scaleIn"
                 >
                   <span className="text-sm font-semibold">{skill}</span>
                   <button
                     onClick={() => handleRemoveSkill(skill)}
-                    className="hover:bg-primary-200 rounded-full p-0.5 transition-colors"
+                    className="hover:bg-primary-200 dark:hover:bg-primary-800 rounded-full p-0.5 transition-colors"
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -116,8 +116,8 @@ export const CareerPredictor: React.FC<CareerPredictorProps> = ({ onNavigate }) 
 
             {/* Input with suggestions */}
             <div className="relative" ref={containerRef}>
-              <div className="flex items-center gap-2 border-2 border-gray-300 rounded-lg px-4 py-2 focus-within:border-primary-600 transition-colors">
-                <Plus className="w-5 h-5 text-gray-400" />
+              <div className="flex items-center gap-2 border-2 border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 focus-within:border-primary-600 dark:focus-within:border-primary-400 transition-colors bg-white dark:bg-gray-700">
+                <Plus className="w-5 h-5 text-gray-400 dark:text-gray-500" />
                 <input
                   ref={inputRef}
                   type="text"
@@ -134,14 +134,14 @@ export const CareerPredictor: React.FC<CareerPredictorProps> = ({ onNavigate }) 
                     }, 100);
                   }}
                   placeholder="Clique aqui para ver skills disponíveis..."
-                  className="flex-1 outline-none text-gray-700"
+                  className="flex-1 outline-none text-gray-700 dark:text-white bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400"
                 />
               </div>
 
               {/* Suggestions dropdown */}
               {isFocused && filteredSuggestions.length > 0 && (
-                <div className="absolute top-full left-0 right-0 mt-2 bg-white border-2 border-gray-300 rounded-lg shadow-lg z-10 animate-slideIn max-h-64 overflow-y-auto">
-                  <div className="p-2 text-xs text-gray-500 border-b border-gray-200">
+                <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 rounded-lg shadow-lg z-10 animate-slideIn max-h-64 overflow-y-auto">
+                  <div className="p-2 text-xs text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-600">
                     {inputValue ? 'Resultados da busca' : 'Skills disponíveis'}
                   </div>
                   {filteredSuggestions.map(skill => (
@@ -151,7 +151,7 @@ export const CareerPredictor: React.FC<CareerPredictorProps> = ({ onNavigate }) 
                         e.preventDefault();
                         handleAddSkill(skill);
                       }}
-                      className="w-full text-left px-4 py-2 hover:bg-primary-50 transition-colors first:rounded-t-lg last:rounded-b-lg"
+                      className="w-full text-left px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-primary-50 dark:hover:bg-gray-600 transition-colors first:rounded-t-lg last:rounded-b-lg"
                     >
                       {skill}
                     </button>
@@ -160,7 +160,7 @@ export const CareerPredictor: React.FC<CareerPredictorProps> = ({ onNavigate }) 
               )}
             </div>
 
-            <p className="text-xs text-gray-500 mt-2">
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
               {skills.length}/15 skills adicionadas
             </p>
           </div>
@@ -187,7 +187,7 @@ export const CareerPredictor: React.FC<CareerPredictorProps> = ({ onNavigate }) 
 
         {matches.length > 0 && !isLoading && (
           <div className="mt-12 animate-fadeIn">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
               Top 5 Profissões Compatíveis
             </h3>
 
@@ -200,11 +200,11 @@ export const CareerPredictor: React.FC<CareerPredictorProps> = ({ onNavigate }) 
                         <span className="text-3xl font-bold text-primary-600">
                           #{index + 1}
                         </span>
-                        <h4 className="text-xl font-bold text-gray-900">
+                        <h4 className="text-xl font-bold text-gray-900 dark:text-white">
                           {career.name}
                         </h4>
                       </div>
-                      <p className="text-sm text-gray-600 mb-3">
+                      <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
                         {career.description}
                       </p>
                     </div>
@@ -213,14 +213,14 @@ export const CareerPredictor: React.FC<CareerPredictorProps> = ({ onNavigate }) 
                   {/* Match Score */}
                   <div className="mb-4">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-semibold text-gray-700">
+                      <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
                         Compatibilidade
                       </span>
                       <span className="text-lg font-bold text-primary-600">
                         {career.matchScore}%
                       </span>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
                       <div
                         className="bg-gradient-to-r from-primary-600 to-accent-600 h-2 rounded-full transition-all duration-500"
                         style={{ width: `${career.matchScore}%` }}
@@ -231,7 +231,7 @@ export const CareerPredictor: React.FC<CareerPredictorProps> = ({ onNavigate }) 
                   {/* Skills */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
-                      <p className="text-xs font-semibold text-gray-600 mb-2">
+                      <p className="text-xs font-semibold text-gray-700 dark:text-gray-200 mb-2">
                         Skills que você tem ✓
                       </p>
                       <div className="flex flex-wrap gap-2">
@@ -254,7 +254,7 @@ export const CareerPredictor: React.FC<CareerPredictorProps> = ({ onNavigate }) 
                     </div>
 
                     <div>
-                      <p className="text-xs font-semibold text-gray-600 mb-2">
+                      <p className="text-xs font-semibold text-gray-700 dark:text-gray-200 mb-2">
                         Skills a desenvolver
                       </p>
                       <div className="flex flex-wrap gap-2">
@@ -267,7 +267,7 @@ export const CareerPredictor: React.FC<CareerPredictorProps> = ({ onNavigate }) 
                           </span>
                         ))}
                         {career.missingSkills.length > 3 && (
-                          <span className="text-xs text-gray-600">
+                          <span className="text-xs text-gray-700 dark:text-gray-300">
                             +{career.missingSkills.length - 3} mais
                           </span>
                         )}
@@ -276,18 +276,18 @@ export const CareerPredictor: React.FC<CareerPredictorProps> = ({ onNavigate }) 
                   </div>
 
                   {/* Info */}
-                  <div className="grid grid-cols-3 gap-4 mb-4 py-4 border-t border-gray-200">
+                  <div className="grid grid-cols-3 gap-4 mb-4 py-4 border-t border-gray-200 dark:border-gray-600">
                     <div>
-                      <p className="text-xs text-gray-600">Salário Médio</p>
-                      <p className="font-bold text-gray-900">{career.avgSalary}</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">Salário Médio</p>
+                      <p className="font-bold text-gray-900 dark:text-white">{career.avgSalary}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-600">Taxa de Crescimento</p>
-                      <p className="font-bold text-green-600">+{career.growthRate}%</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">Taxa de Crescimento</p>
+                      <p className="font-bold text-green-600 dark:text-green-400">+{career.growthRate}%</p>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-600">Emergência</p>
-                      <p className="font-bold text-primary-600">{career.emergenceScore}/100</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">Emergência</p>
+                      <p className="font-bold text-primary-600 dark:text-primary-400">{career.emergenceScore}/100</p>
                     </div>
                   </div>
 

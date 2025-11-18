@@ -7,6 +7,7 @@ import { FAQ } from './pages/FAQ';
 import { Contact } from './pages/Contact';
 import { Login } from './pages/Login';
 import { Roadmap } from './pages/Roadmap';
+import { ThemeProvider } from './contexts/ThemeContext';
 import './index.css';
 
 function AppContent() {
@@ -59,9 +60,11 @@ function AppContent() {
 
 function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </ThemeProvider>
   );
 }
 
