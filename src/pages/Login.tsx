@@ -73,17 +73,17 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
   };
 
   return (
-    <main className="min-h-screen pt-20 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary-50 via-white to-accent-50">
+    <main className="min-h-screen pt-20 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary-50 via-white to-accent-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="max-w-md mx-auto">
         {/* Header */}
         <div className="text-center mb-12 animate-fadeIn">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary-600 to-accent-600 rounded-full mb-4">
             <LogIn className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
             {isSignUp ? 'Criar Conta' : 'Bem-vindo'}
           </h1>
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-gray-300">
             {isSignUp
               ? 'Crie sua conta para começar a explorar carreiras'
               : 'Faça login para acessar sua conta FLUX'}
@@ -91,12 +91,12 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
         </div>
 
         {/* Form */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 animate-slideIn">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 animate-slideIn">
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Erro geral */}
             {errors.submit && (
-              <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                <p className="text-red-700 text-sm font-semibold">{errors.submit}</p>
+              <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                <p className="text-red-700 dark:text-red-400 text-sm font-semibold">{errors.submit}</p>
               </div>
             )}
 
@@ -166,8 +166,8 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
             </Button>
 
             {/* Toggle Sign Up / Login */}
-            <div className="text-center pt-4 border-t border-gray-200">
-              <p className="text-gray-600 text-sm mb-2">
+            <div className="text-center pt-4 border-t border-gray-200 dark:border-gray-700">
+              <p className="text-gray-600 dark:text-gray-400 text-sm mb-2">
                 {isSignUp
                   ? 'Já tem uma conta?'
                   : 'Não tem uma conta?'}
@@ -181,7 +181,7 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
                   setPassword('');
                   setName('');
                 }}
-                className="text-primary-600 font-semibold hover:text-primary-700 transition-colors"
+                className="text-primary-600 dark:text-primary-400 font-semibold hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
               >
                 {isSignUp ? 'Fazer Login' : 'Criar Conta'}
               </button>
@@ -189,9 +189,9 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
           </form>
 
           {/* Demo Info */}
-          <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-            <p className="text-blue-900 text-xs font-semibold mb-2">Demo:</p>
-            <p className="text-blue-800 text-xs">
+          <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+            <p className="text-blue-900 dark:text-blue-400 text-xs font-semibold mb-2">Demo:</p>
+            <p className="text-blue-800 dark:text-blue-300 text-xs">
               Use qualquer email e senha (mín. 6 caracteres) para testar. Os dados são salvos localmente.
             </p>
           </div>

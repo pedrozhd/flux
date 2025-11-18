@@ -1,12 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import type { User } from '../types';
+
+// Event para sincronizar entre abas
+const AUTH_CHANGE_EVENT = 'auth_change';
 
 export const useAuth = () => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Carregar usuário do localStorage ao montar
-  useEffect(() => {
+  // Carregar usuário do localStorage
+  const loadUser = useCallback(() => {
     const storedUser = localStorage.getItem('flux_user');
     if (storedUser) {
       try {
@@ -14,10 +17,31 @@ export const useAuth = () => {
       } catch (error) {
         console.error('Erro ao carregar usuário:', error);
         localStorage.removeItem('flux_user');
+        setUser(null);
       }
+    } else {
+      setUser(null);
     }
-    setIsLoading(false);
   }, []);
+
+  // Carregar usuário ao montar e escutar mudanças
+  useEffect(() => {
+    loadUser();
+    setIsLoading(false);
+
+    // Escutar mudanças de autenticação
+    const handleAuthChange = () => {
+      loadUser();
+    };
+
+    window.addEventListener(AUTH_CHANGE_EVENT, handleAuthChange);
+    window.addEventListener('storage', handleAuthChange);
+
+    return () => {
+      window.removeEventListener(AUTH_CHANGE_EVENT, handleAuthChange);
+      window.removeEventListener('storage', handleAuthChange);
+    };
+  }, [loadUser]);
 
   // Login
   const login = (email: string, name: string) => {
@@ -29,12 +53,16 @@ export const useAuth = () => {
     };
     localStorage.setItem('flux_user', JSON.stringify(newUser));
     setUser(newUser);
+    // Disparar evento para sincronizar
+    window.dispatchEvent(new Event(AUTH_CHANGE_EVENT));
   };
 
   // Logout
   const logout = () => {
     localStorage.removeItem('flux_user');
     setUser(null);
+    // Disparar evento para sincronizar
+    window.dispatchEvent(new Event(AUTH_CHANGE_EVENT));
   };
 
   return {
