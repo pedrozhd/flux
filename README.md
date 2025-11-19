@@ -168,7 +168,7 @@ flux/
 ### Links Úteis
 - [Vercel](https://flux-rouge.vercel.app/)
 - [GitHub](https://github.com/pedrozhd/flux)
-- [Youtube](https://youtube.com/flux)
+- [Youtube](https://youtu.be/KMq22BJzdhI)
 
 ### Endereço
 Rua das Inovações, 123 - São Paulo/SP
