@@ -10,8 +10,9 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
-  const { user, logout } = useAuth();
+  const { auth, logout, isAuthenticated } = useAuth();
   const { theme, effectiveTheme, setTheme } = useTheme();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -45,16 +46,13 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
       }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+        
         {/* Logo */}
         <div
           onClick={() => handleNavClick('home')}
           className="flex items-center gap-2 cursor-pointer group"
         >
-          <img
-            src={logo}
-            alt="FLUX Logo"
-            className="h-10 w-auto"
-          />
+          <img src={logo} alt="FLUX Logo" className="h-10 w-auto" />
         </div>
 
         {/* Desktop Navigation */}
@@ -89,11 +87,13 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
 
           {/* Auth Buttons */}
           <div className="flex items-center gap-4 pl-4 border-l border-gray-200 dark:border-gray-700">
-            {user ? (
+
+            {isAuthenticated && auth ? (
               <>
                 <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-                  {user.name}
+                  {auth.nomeCompleto ?? auth.email}
                 </span>
+
                 <button
                   onClick={() => {
                     logout();
@@ -124,7 +124,6 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="md:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
-          aria-label="Toggle menu"
         >
           {isMenuOpen ? (
             <X className="w-6 h-6 text-gray-700 dark:text-gray-300" />
@@ -138,6 +137,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
       {isMenuOpen && (
         <div className="md:hidden bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 animate-slideIn">
           <div className="px-4 py-4 space-y-2">
+
             {navItems.map(item => (
               <button
                 key={item.page}
@@ -172,13 +172,15 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
               </button>
             </div>
 
-            {/* Mobile Auth Buttons */}
+            {/* Mobile Auth */}
             <div className="pt-4 border-t border-gray-200 space-y-2">
-              {user ? (
+
+              {isAuthenticated && auth ? (
                 <>
                   <div className="px-4 py-2 text-sm font-semibold text-gray-700">
-                    {user.name}
+                    {auth.nomeCompleto ?? auth.email}
                   </div>
+
                   <button
                     onClick={() => {
                       logout();
@@ -202,6 +204,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
                   Login
                 </button>
               )}
+
             </div>
           </div>
         </div>
