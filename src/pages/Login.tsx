@@ -9,7 +9,7 @@ interface LoginProps {
 }
 
 export const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
-  const { login } = useAuth();
+  const { login, signUp } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -48,25 +48,29 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
     }
 
     setIsLoading(true);
+    setErrors({}); // Limpar erros anteriores
 
     try {
-      // Simular delay de API
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      // Fazer login
-      login(email, isSignUp ? name : email.split('@')[0]);
+      if (isSignUp) {
+        // Cadastro
+        await signUp(email, password, name);
+      } else {
+        // Login
+        await login(email, password);
+      }
 
       // Limpar formulário
       setEmail('');
       setPassword('');
       setName('');
-      setErrors({});
 
       // Callback de sucesso
       onLoginSuccess();
     } catch (error) {
-      console.error('Erro ao fazer login:', error);
-      setErrors({ submit: 'Erro ao fazer login. Tente novamente.' });
+      console.error('Erro:', error);
+      setErrors({ 
+        submit: error instanceof Error ? error.message : 'Erro ao processar. Tente novamente.' 
+      });
     } finally {
       setIsLoading(false);
     }
@@ -188,13 +192,15 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
             </div>
           </form>
 
-          {/* Demo Info */}
-          <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
-            <p className="text-blue-900 dark:text-blue-400 text-xs font-semibold mb-2">Demo:</p>
-            <p className="text-blue-800 dark:text-blue-300 text-xs">
-              Use qualquer email e senha (mín. 6 caracteres) para testar. Os dados são salvos localmente.
-            </p>
-          </div>
+          {/* Info de Desenvolvimento */}
+          {import.meta.env.NODE_ENV === 'development' && (
+            <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+              <p className="text-blue-900 dark:text-blue-400 text-xs font-semibold mb-2">Desenvolvimento:</p>
+              <p className="text-blue-800 dark:text-blue-300 text-xs">
+                API: {import.meta.env.VITE_API_BASE_URL || 'https://flux-api-moxp.onrender.com'}
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </main>

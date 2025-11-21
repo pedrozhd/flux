@@ -1,75 +1,96 @@
 import { useState, useEffect, useCallback } from 'react';
-import type { User } from '../types';
+import { authApi } from '../types/api';
 
-// Event para sincronizar entre abas
 const AUTH_CHANGE_EVENT = 'auth_change';
 
+interface StoredAuth {
+  idUsuario?: number;
+  id?: number;
+  email: string;
+  senha: string;
+  nomeCompleto?: string;
+}
+
 export const useAuth = () => {
-  const [user, setUser] = useState<User | null>(null);
+  const [auth, setAuth] = useState<StoredAuth | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Carregar usuário do localStorage
-  const loadUser = useCallback(() => {
-    const storedUser = localStorage.getItem('flux_user');
-    if (storedUser) {
+  const loadAuth = useCallback(() => {
+    const stored = localStorage.getItem('flux_auth');
+    if (stored) {
       try {
-        setUser(JSON.parse(storedUser));
+        const parsed: StoredAuth = JSON.parse(stored);
+        setAuth(parsed);
       } catch (error) {
-        console.error('Erro ao carregar usuário:', error);
-        localStorage.removeItem('flux_user');
-        setUser(null);
+        console.error('Erro ao carregar auth:', error);
+        localStorage.removeItem('flux_auth');
+        setAuth(null);
       }
     } else {
-      setUser(null);
+      setAuth(null);
     }
   }, []);
 
-  // Carregar usuário ao montar e escutar mudanças
   useEffect(() => {
-    loadUser();
+    loadAuth();
     setIsLoading(false);
 
-    // Escutar mudanças de autenticação
-    const handleAuthChange = () => {
-      loadUser();
-    };
-
-    window.addEventListener(AUTH_CHANGE_EVENT, handleAuthChange);
-    window.addEventListener('storage', handleAuthChange);
+    const handler = () => loadAuth();
+    window.addEventListener(AUTH_CHANGE_EVENT, handler);
+    window.addEventListener('storage', handler);
 
     return () => {
-      window.removeEventListener(AUTH_CHANGE_EVENT, handleAuthChange);
-      window.removeEventListener('storage', handleAuthChange);
+      window.removeEventListener(AUTH_CHANGE_EVENT, handler);
+      window.removeEventListener('storage', handler);
     };
-  }, [loadUser]);
+  }, [loadAuth]);
 
-  // Login
-  const login = (email: string, name: string) => {
-    const newUser: User = {
-      id: Math.random().toString(36).substr(2, 9),
-      email,
-      name,
-      createdAt: new Date().toISOString()
+  // LOGIN
+  const login = async (email: string, senha: string) => {
+    const response = await authApi.login({ email, senha });
+
+    const authData: StoredAuth = {
+      idUsuario: response.idUsuario,
+      email: response.email,
+      senha: response.senha,
+      nomeCompleto: response.nomeCompleto,
     };
-    localStorage.setItem('flux_user', JSON.stringify(newUser));
-    setUser(newUser);
-    // Disparar evento para sincronizar
+
+    localStorage.setItem('flux_auth', JSON.stringify(authData));
+    setAuth(authData);
+
     window.dispatchEvent(new Event(AUTH_CHANGE_EVENT));
   };
 
-  // Logout
+  // CADASTRO
+  const signUp = async (email: string, senha: string, nomeCompleto: string) => {
+    const response = await authApi.signUp({ email, senha, nomeCompleto });
+
+    const authData: StoredAuth = {
+      id: response.idUsuario,
+      email: response.email,
+      senha: response.senha,
+      nomeCompleto: response.nomeCompleto,
+    };
+
+    localStorage.setItem('flux_auth', JSON.stringify(authData));
+    setAuth(authData);
+
+    window.dispatchEvent(new Event(AUTH_CHANGE_EVENT));
+  };
+
   const logout = () => {
-    localStorage.removeItem('flux_user');
-    setUser(null);
-    // Disparar evento para sincronizar
+    localStorage.removeItem('flux_auth');
+    setAuth(null);
     window.dispatchEvent(new Event(AUTH_CHANGE_EVENT));
   };
 
   return {
-    user,
+    auth,
     isLoading,
+    isAuthenticated: !!auth,
     login,
+    signUp,
     logout,
-    isAuthenticated: !!user
   };
 };
